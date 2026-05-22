@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tactiq Clone</title>
+    <style>
+      :root { color-scheme: light dark; font-family: ui-sans-serif, system-ui, sans-serif; }
+      body { width: 420px; max-height: 560px; margin: 0; padding: 12px; }
+      h1 { font-size: 13px; margin: 0 0 8px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.7; }
+      .field { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+      .field label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.6; min-width: 70px; }
+      .toggle-row label { display: flex; align-items: center; gap: 6px; min-width: 0; text-transform: none; letter-spacing: 0; font-size: 12px; opacity: 0.85; cursor: pointer; }
+      .toggle-row input { margin: 0; }
+      select { flex: 1; padding: 6px; font: inherit; }
+      .empty { opacity: 0.6; font-size: 13px; padding: 24px 0; text-align: center; }
+      .row { padding: 6px 8px; border-radius: 6px; margin-bottom: 4px; font-size: 13px; line-height: 1.4; }
+      .row.live { background: color-mix(in srgb, currentColor 10%, transparent); }
+      .speaker { font-weight: 600; opacity: 0.85; }
+      .text { display: block; opacity: 0.95; }
+      footer { margin-top: 10px; font-size: 11px; opacity: 0.5; display: flex; justify-content: space-between; align-items: center; }
+      button { font: inherit; padding: 4px 10px; border-radius: 4px; cursor: pointer; }
+      #captions { max-height: 380px; overflow-y: auto; }
+    </style>
+  </head>
+  <body>
+    <h1>Transcript</h1>
+    <div class="field">
+      <label for="meeting-picker">Meeting</label>
+      <select id="meeting-picker"></select>
+    </div>
+    <div class="field">
+      <label for="language-picker">Language</label>
+      <select id="language-picker"></select>
+    </div>
+    <div class="field toggle-row">
+      <label for="auto-enable"><input type="checkbox" id="auto-enable" /> Auto-turn on captions when I join a Meet</label>
+    </div>
+    <div id="captions"></div>
+    <footer>
+      <button id="clear">Clear all</button>
+      <span id="status"></span>
+    </footer>
+    <script src="popup.js" type="module"></script>
+  </body>
+</html>

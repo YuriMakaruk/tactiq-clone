@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Tactiq Clone (dev)",
+  "version": "0.0.1",
+  "description": "Personal-project Google Meet caption capture",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["https://meet.google.com/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://meet.google.com/*"],
+      "js": ["content-meet.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Transcript"
+  }
+}
