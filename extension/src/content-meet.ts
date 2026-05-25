@@ -79,7 +79,7 @@ let meetingAnnounced = false;
 const announceMeeting = () => {
   if (meetingAnnounced) return;
   meetingAnnounced = true;
-  send({ kind: 'meeting-started', meetingId, url: location.href, startedAt: Date.now() });
+  send({ kind: 'meeting-started', meetingId, url: location.href, startedAt: Date.now(), platform: 'meet' });
   log('meeting announced:', meetingId);
 };
 

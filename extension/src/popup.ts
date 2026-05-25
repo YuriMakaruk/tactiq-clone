@@ -91,10 +91,10 @@ const render = (data: StoredData) => {
   }
 
   picker.innerHTML = meetings
-    .map(
-      (m) =>
-        `<option value="${m.meetingId}" ${m.meetingId === selectedMeetingId ? 'selected' : ''}>${m.meetingId} — ${fmtTime(m.startedAt)}</option>`,
-    )
+    .map((m) => {
+      const platformLabel = m.platform === 'zoom' ? 'Zoom' : 'Meet';
+      return `<option value="${m.meetingId}" ${m.meetingId === selectedMeetingId ? 'selected' : ''}>${platformLabel} — ${m.meetingId} — ${fmtTime(m.startedAt)}</option>`;
+    })
     .join('');
 
   const meeting = data.meetings[selectedMeetingId]!;

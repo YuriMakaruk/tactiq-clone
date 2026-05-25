@@ -27,14 +27,18 @@ const mutate = (fn: (data: StoredData) => StoredData): Promise<void> => {
 const handle = (msg: CaptionMessage): void => {
   if (msg.kind === 'meeting-started') {
     void mutate((data) => {
-      if (!data.meetings[msg.meetingId]) {
+      const existing = data.meetings[msg.meetingId];
+      if (!existing) {
         data.meetings[msg.meetingId] = {
           meetingId: msg.meetingId,
           url: msg.url,
           startedAt: msg.startedAt,
           language: data.defaultLanguage,
+          platform: msg.platform,
           captions: {},
         };
+      } else if (!existing.platform) {
+        existing.platform = msg.platform;
       }
       return data;
     });
@@ -50,6 +54,7 @@ const handle = (msg: CaptionMessage): void => {
           url: '',
           startedAt: msg.record.startedAt,
           language: data.defaultLanguage,
+          platform: 'meet',
           captions: {},
         });
       meeting.captions[msg.record.id] = msg.record;
