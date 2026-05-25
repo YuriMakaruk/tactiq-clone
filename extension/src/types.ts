@@ -8,11 +8,14 @@ export type CaptionRecord = {
   finalized: boolean;
 };
 
+export type Platform = 'meet' | 'zoom';
+
 export type StoredMeeting = {
   meetingId: string;
   url: string;
   startedAt: number;
   language: string;
+  platform: Platform;
   captions: Record<string, CaptionRecord>;
 };
 
@@ -25,7 +28,7 @@ export type StoredData = {
 export type CaptionMessage =
   | { kind: 'caption-update'; record: CaptionRecord }
   | { kind: 'caption-finalize'; id: string; meetingId: string; finalizedAt: number }
-  | { kind: 'meeting-started'; meetingId: string; url: string; startedAt: number }
+  | { kind: 'meeting-started'; meetingId: string; url: string; startedAt: number; platform: Platform }
   | { kind: 'set-meeting-language'; meetingId: string; language: string }
   | { kind: 'set-default-language'; language: string }
   | { kind: 'set-auto-enable'; enabled: boolean };
